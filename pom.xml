@@ -16,35 +16,37 @@
     </properties>
     
     <dependencies>
-<!--        <dependency>
-            <groupId>org.eclipse.persistence</groupId>
-            <artifactId>eclipselink</artifactId>
-            <version>2.5.2</version>
-            <scope>provided</scope>
-        </dependency>
-        <dependency>
-            <groupId>org.eclipse.persistence</groupId>
-            <artifactId>org.eclipse.persistence.jpa.modelgen.processor</artifactId>
-            <version>2.5.2</version>
-            <scope>provided</scope>-->
-<!--        </dependency>-->
+        <!--        <dependency>
+        <groupId>org.eclipse.persistence</groupId>
+        <artifactId>eclipselink</artifactId>
+        <version>2.5.2</version>
+        <scope>provided</scope>
+    </dependency>
+    <dependency>
+        <groupId>org.eclipse.persistence</groupId>
+        <artifactId>org.eclipse.persistence.jpa.modelgen.processor</artifactId>
+        <version>2.5.2</version>
+        <scope>provided</scope>-->
+        <!--        </dependency>-->
         
         <dependency>
             <groupId>org.hibernate</groupId>
             <artifactId>hibernate-core</artifactId>
             <version>5.2.16.Final</version>
         </dependency>
-        <!--revisar -->
-        <!-- https://mvnrepository.com/artifact/org.glassfish/javax.persistence -->
-        <!--        <dependency>
-            <groupId>org.glassfish</groupId>
-            <artifactId>javax.persistence</artifactId>
-            <version>10.0-b28</version>
-        </dependency>-->
-        <dependency>
+       
+<!--        <dependency>
             <groupId>org.hibernate.javax.persistence</groupId>
             <artifactId>hibernate-jpa-2.0-api</artifactId>
             <version>1.0.1.Final</version>
+        </dependency>-->
+
+        <!-- https://mvnrepository.com/artifact/org.hibernate.javax.persistence/hibernate-jpa-2.2-api -->
+        <dependency>
+            <groupId>org.hibernate.javax.persistence</groupId>
+            <artifactId>hibernate-jpa-2.2-api</artifactId>
+            <version>1.0.0.Beta1</version>
+            <type>pom</type>
         </dependency>
         <!-- https://mvnrepository.com/artifact/org.hibernate/hibernate-entitymanager -->
         <dependency>
@@ -52,30 +54,12 @@
             <artifactId>hibernate-entitymanager</artifactId>
             <version>5.2.16.Final</version>
         </dependency>
-<!--        	<dependency>
-  		<groupId>org.hibernate.common</groupId>
-  		<artifactId>hibernate-commons-annotations</artifactId>
-  		<version>5.0.2.Final</version>
-  	</dependency>-->
-         <dependency>
+
+        <dependency>
             <groupId>org.hibernate</groupId>
             <artifactId>hibernate-entitymanager</artifactId>
             <version>5.2.16.Final</version>
-        </dependency>
-
-        <!--        <dependency>
-            <groupId>org.hibernate</groupId>
-            <artifactId>hibernate-entitymanager</artifactId>
-             <version>5.2.16.Final</version>
-        </dependency>-->
-        <!--        <dependency>
-            <groupId>org.hibernate</groupId>
-            <artifactId>hibernate-validator</artifactId>
-             <version>5.2.16.Final</version>
-        </dependency>-->
-        
-       
-        
+        </dependency>   
         <dependency>
             <groupId>javax</groupId>
             <artifactId>javaee-web-api</artifactId>
@@ -168,3 +152,29 @@
         </repository>
     </repositories>
 </project>
+
+<!--        	<dependency>
+        <groupId>org.hibernate.common</groupId>
+        <artifactId>hibernate-commons-annotations</artifactId>
+        <version>5.0.2.Final</version>
+</dependency>-->
+
+
+<!--        <dependency>
+    <groupId>org.hibernate</groupId>
+    <artifactId>hibernate-entitymanager</artifactId>
+     <version>5.2.16.Final</version>
+</dependency>-->
+<!--        <dependency>
+    <groupId>org.hibernate</groupId>
+    <artifactId>hibernate-validator</artifactId>
+     <version>5.2.16.Final</version>
+</dependency>-->
+        
+<!--revisar -->
+<!-- https://mvnrepository.com/artifact/org.glassfish/javax.persistence -->
+<!--        <dependency>
+    <groupId>org.glassfish</groupId>
+    <artifactId>javax.persistence</artifactId>
+    <version>10.0-b28</version>
+</dependency>-->

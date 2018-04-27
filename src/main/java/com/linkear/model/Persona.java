@@ -13,10 +13,18 @@ import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
+
+
+
 import javax.persistence.Id;
 import javax.persistence.OneToOne;
+import javax.persistence.PrePersist;
 import javax.persistence.SequenceGenerator;
+
+
 import javax.persistence.Table;
+
+
 
 /**
  *
@@ -24,12 +32,13 @@ import javax.persistence.Table;
  */
 @Entity
 @Table(name = "PERSONA")
+@SequenceGenerator(name = "PERSONA_SEQUENCE", sequenceName = "\"SEDUG-MAIN\".PERSONA_SEQUENCE" )
+
 public class Persona implements Serializable{
     private static final long serialVersionUID = 1L;
     @Id
     @Column( name = "ID_PERSONA" )
     @GeneratedValue(strategy=GenerationType.SEQUENCE, generator="PERSONA_SEQUENCE")
-    @SequenceGenerator(name="PERSONA_SEQUENCE", sequenceName = "PERSONA_SEQUENCE")
     private Long idPersona;
     @Column(name = "CEDULA")
     private String cedula;
@@ -40,20 +49,26 @@ public class Persona implements Serializable{
     @Column(name = "SEXO")
     private String sexo;
    //mapedBy es la variable de la otra entidad
-    @OneToOne(mappedBy = "persona", cascade = {CascadeType.ALL})
+    //@OneToOne(/*mappedBy = "persona",*/ cascade = CascadeType.PERSIST, fetch=FetchType.LAZY, optional = false)
+  
+    @OneToOne(mappedBy = "persona", fetch = FetchType.LAZY)
+    //@MapsId
     private Usuario usuario;
 
     public Persona() {
-        usuario= new Usuario();
+
     }
 
-    public Persona(String cedula, String nombres, String apellidos, String sexo) {
+    public Persona(Long idPersona, String cedula, String nombres, String apellidos, String sexo, Usuario usuario) {
+        this.idPersona = idPersona;
         this.cedula = cedula;
         this.nombres = nombres;
         this.apellidos = apellidos;
         this.sexo = sexo;
-        usuario= new Usuario();
+        this.usuario = usuario;
     }
+
+ 
 
     public Long getIdPersona() {
         return idPersona;
@@ -108,6 +123,15 @@ public class Persona implements Serializable{
 
     public void setUsuario(Usuario usuario) {
         this.usuario = usuario;
+    }
+    
+     @PrePersist
+    public void personaPostPersist() {
+         System.out.println("hohoiqwheoihqeoihqweoihewqoihewqouqwhiuchiue   PERSONA xxxgiydguyegudygueygduygeuygduyeguydgeuygduyeguyqguygwuygqdwuygduyqgeduyeguyeguyed");
+        System.out.println("hohoiqwheoihqeoihqweoihewqoihewqouqwhiuchiuegiydguyegudygueygduygeuygduyeguydgeuygduyeguyqguygwuygqdwuygduyqgeduyeguyeguyed");
+        System.out.println("hohoiqwheoihqeoihqweoihewqoihewqouqwhiuchiuegiydguyegudygueygduygeuygduyeguydgeuygduyeguyqguygwuygqdwuygduyqgeduyeguyeguyed");
+        //System.out.println(this.nombres);
+		
     }
 
     @Override

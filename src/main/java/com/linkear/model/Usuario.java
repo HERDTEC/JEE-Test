@@ -16,8 +16,10 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.MapsId;
 import javax.persistence.OneToOne;
 import javax.persistence.PrePersist;
+import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
@@ -27,40 +29,43 @@ import javax.persistence.Table;
  */
 @Entity
 @Table(name = "USUARIO")
+@SequenceGenerator(name = "USUARIO_SEQUENCE", sequenceName = "\"SEDUG-MAIN\".USUARIO_SEQUENCE")
 public class Usuario implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "USUARIO_SEQUENCE")
-    @SequenceGenerator(name = "USUARIO_SEQUENCE", sequenceName = "USUARIO_SEQUENCE")
     @Column(name = "ID_USUARIO")
     private Long idUsuario;
     @Column(name = "USUARIO")
     private String usuario;
     @Column(name = "CLAVE")
     private String clave;
-    
-    @ManyToOne()
-    @JoinColumn(name = "TIPO_USUARIO" )
+    @ManyToOne
+    @JoinColumn(name = "ID_TIPO_USUARIO", referencedColumnName="ID_TIPO_USUARIO")
     private TipoUsuario tipoUsuario;
-   
-   
     @Column(name = "ESTADO")
     private char estado = '1';
     
-    @OneToOne(cascade= {CascadeType.PERSIST})
+    //@OneToOne (cascade = CascadeType.ALL)
+    //@OneToOne(cascade= {CascadeType.PERSIST})
+    //@JoinColumn(name = "ID_PERSONA", nullable=false, referencedColumnName="ID_PERSONA", insertable = false, updatable = false, inverse= true)
+    @OneToOne(cascade = CascadeType.ALL)
+    //@MapsId
     @JoinColumn(name = "ID_PERSONA")
     private Persona persona;
 
     public Usuario() {
-//        persona = new Persona();
+
     }
 
-    public Usuario(String usuario, String clave , char estado) {
+    public Usuario(String usuario, String clave, TipoUsuario tipoUsuario, Persona persona) {
         this.usuario = usuario;
         this.clave = clave;
-  
-        this.estado = estado;
+        this.tipoUsuario = tipoUsuario;
+        this.persona = persona;
     }
+
+   
 
     public Long getIdUsuario() {
         return idUsuario;
@@ -149,6 +154,10 @@ public class Usuario implements Serializable {
     
     @PrePersist
     public void usuarioPostPersist() {
+        System.out.println("hohoiqwheoihqeoihqweoihewqoihewqouqwhiuchiuegiyd    USUARIO guyegudygueygduygeuygduyeguydgeuygduyeguyqguygwuygqdwuygduyqgeduyeguyeguyed");
+        System.out.println("hohoiqwheoihqeoihqweoihewqoihewqouqwhiuchiuegiydguyegudygueygduygeuygduyeguydgeuygduyeguyqguygwuygqdwuygduyqgeduyeguyeguyed");
+        System.out.println("hohoiqwheoihqeoihqweoihewqoihewqouqwhiuchiuegiydguyegudygueygduygeuygduyeguydgeuygduyeguyqguygwuygqdwuygduyqgeduyeguyeguyed");
+        //if( this.persona != null )System.out.println(this.persona.toString());
         
 		
     }

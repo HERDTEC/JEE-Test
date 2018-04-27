@@ -18,6 +18,14 @@
       <property name="hibernate.format_sql" value="true"/>
       <property name="hibernate.dialect" value="org.hibernate.dialect.Oracle10gDialect"/>
       <property name="hibernate.transaction.jta.platform" value="org.hibernate.service.jta.platform.internal.SunOneJtaPlatform"/>
+      <property name="hibernate.show_sql_format" value="true"/>
+      
+<!--     <property name="hibernate.connection.autocommit" value="true"/>-->
+<!--    <property name="hibernate.cache.use_query_cache" value="true"/>-->
+  <!--    <property name="hibernate.cache.use_second_level_cache" value="false"/>-->
+<!--     <property name="hibernate.id.new_generator_mappings" value="true"/>-->
+      
+
     </properties>
   </persistence-unit>
 </persistence>

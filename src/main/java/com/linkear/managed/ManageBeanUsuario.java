@@ -42,22 +42,35 @@ public class ManageBeanUsuario implements Serializable{
     private TipoUsuario tipoUsuario;
     private Persona persona;
     private Usuario usuario;
+   
     @PostConstruct
     public void init(){
         persona = new Persona();
         usuario = new Usuario();
-        tipoUsuarios = tipoUsuarioEJB.findAll();
+        cargarTipoUsuario();
+    }
+    public void cargarTipoUsuario(){
+        try{
+            tipoUsuarios = tipoUsuarioEJB.findAll();
+        }catch(Exception ex){
+            //msg jsf
+            System.out.println(ex.getMessage());
+        }
     }
     public void registrar(){
         try{
-            /*usuario.setPersona(persona);
-            usuarioEJB.create(usuario);
-            usuario = new Usuario();*/
-            
             tipoUsuario= tipoUsuarioEJB.find(idTipoUsuario);
             usuario.setTipoUsuario(tipoUsuario);
-            persona.setUsuario(usuario);
-            personaEJB.create(persona);
+            usuario.setPersona(persona);
+            usuarioEJB.create(usuario);
+
+            
+            
+//            
+//            tipoUsuario= tipoUsuarioEJB.find(idTipoUsuario);
+//            usuario.setTipoUsuario(tipoUsuario);
+//            persona.setUsuario(usuario);
+//            personaEJB.create(persona);
             persona = new Persona();
             usuario = new Usuario();
 
@@ -71,8 +84,6 @@ public class ManageBeanUsuario implements Serializable{
 //            System.out.println(ex.getMessage());
 //        }
         catch(Exception ex) {
-            persona = new Persona();
-            usuario = new Usuario();
             
             FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_FATAL, "Aviso", "Error! "+ex.getMessage()));
             System.out.println(ex.getMessage());

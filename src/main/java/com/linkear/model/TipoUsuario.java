@@ -36,7 +36,7 @@ public class TipoUsuario implements Serializable {
     @Column(name = "ESTADO")
     private char estado = '1';
     
-    @OneToMany(mappedBy = "tipoUsuario", fetch = FetchType.LAZY )
+    @OneToMany(mappedBy = "tipoUsuario" , fetch=FetchType.LAZY)
     private List<Usuario> usuarios;
 
     public TipoUsuario() {
