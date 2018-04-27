@@ -17,12 +17,16 @@ import javax.persistence.GenerationType;
 
 
 import javax.persistence.Id;
+import javax.persistence.MapsId;
 import javax.persistence.OneToOne;
+import javax.persistence.PostPersist;
 import javax.persistence.PrePersist;
 import javax.persistence.SequenceGenerator;
 
 
 import javax.persistence.Table;
+import org.hibernate.annotations.LazyToOne;
+import org.hibernate.annotations.LazyToOneOption;
 
 
 
@@ -48,11 +52,9 @@ public class Persona implements Serializable{
     private String apellidos;
     @Column(name = "SEXO")
     private String sexo;
-   //mapedBy es la variable de la otra entidad
-    //@OneToOne(/*mappedBy = "persona",*/ cascade = CascadeType.PERSIST, fetch=FetchType.LAZY, optional = false)
+
+    @OneToOne(mappedBy = "persona", fetch = FetchType.LAZY,cascade = CascadeType.ALL,  optional = false)
   
-    @OneToOne(mappedBy = "persona", fetch = FetchType.LAZY)
-    //@MapsId
     private Usuario usuario;
 
     public Persona() {
@@ -126,11 +128,23 @@ public class Persona implements Serializable{
     }
     
      @PrePersist
-    public void personaPostPersist() {
+    public void personaPrePersist() {
          System.out.println("hohoiqwheoihqeoihqweoihewqoihewqouqwhiuchiue   PERSONA xxxgiydguyegudygueygduygeuygduyeguydgeuygduyeguyqguygwuygqdwuygduyqgeduyeguyeguyed");
         System.out.println("hohoiqwheoihqeoihqweoihewqoihewqouqwhiuchiuegiydguyegudygueygduygeuygduyeguydgeuygduyeguyqguygwuygqdwuygduyqgeduyeguyeguyed");
         System.out.println("hohoiqwheoihqeoihqweoihewqoihewqouqwhiuchiuegiydguyegudygueygduygeuygduyeguydgeuygduyeguyqguygwuygqdwuygduyqgeduyeguyeguyed");
         //System.out.println(this.nombres);
+		
+    }
+    
+    @PostPersist
+    public void personaPostPersist() {
+         System.out.println("hohoiqwheoihqeoihqweoihewqoihewqouqwhiuchiue  xx --ID PERSONA xxxgiydguyegudygueygduygeuygduyeguydgeuygduyeguyqguygwuygqdwuygduyqgeduyeguyeguyed");
+        System.out.println("hohoiqwheoihqeoihqweoihewqoihewqouqwhiuchiuegiydguyegudygueygduygeuygduyeguydgeuygduyeguyqguygwuygqdwuygduyqgeduyeguyeguyed");
+        System.out.println("hohoiqwheoihqeoihqweoihewqoihewqouqwhiuchiuegiydguyegudygueygduygeuygduyeguydgeuygduyeguyqguygwuygqdwuygduyqgeduyeguyeguyed");
+        System.out.println(this.idPersona);
+        if (this.idPersona!= null)
+            this.usuario.setPersona(this);
+        
 		
     }
 

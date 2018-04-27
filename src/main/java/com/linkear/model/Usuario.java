@@ -31,6 +31,7 @@ import javax.persistence.Table;
 @Table(name = "USUARIO")
 @SequenceGenerator(name = "USUARIO_SEQUENCE", sequenceName = "\"SEDUG-MAIN\".USUARIO_SEQUENCE")
 public class Usuario implements Serializable {
+
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "USUARIO_SEQUENCE")
@@ -41,19 +42,14 @@ public class Usuario implements Serializable {
     @Column(name = "CLAVE")
     private String clave;
     @ManyToOne
-    @JoinColumn(name = "ID_TIPO_USUARIO", referencedColumnName="ID_TIPO_USUARIO")
+    @JoinColumn(name = "ID_TIPO_USUARIO", referencedColumnName = "ID_TIPO_USUARIO")
     private TipoUsuario tipoUsuario;
     @Column(name = "ESTADO")
     private char estado = '1';
-    
-    //@OneToOne (cascade = CascadeType.ALL)
-    //@OneToOne(cascade= {CascadeType.PERSIST})
-    //@JoinColumn(name = "ID_PERSONA", nullable=false, referencedColumnName="ID_PERSONA", insertable = false, updatable = false, inverse= true)
     @OneToOne(cascade = CascadeType.ALL)
-    //@MapsId
-    @JoinColumn(name = "ID_PERSONA")
+    @MapsId
+    @JoinColumn(name = "ID_PERSONA", referencedColumnName = "ID_PERSONA")
     private Persona persona;
-
     public Usuario() {
 
     }
@@ -64,8 +60,6 @@ public class Usuario implements Serializable {
         this.tipoUsuario = tipoUsuario;
         this.persona = persona;
     }
-
-   
 
     public Long getIdUsuario() {
         return idUsuario;
@@ -91,8 +85,6 @@ public class Usuario implements Serializable {
         this.clave = clave;
     }
 
- 
-
     public char getEstado() {
         return estado;
     }
@@ -108,17 +100,14 @@ public class Usuario implements Serializable {
     public void setPersona(Persona persona) {
         this.persona = persona;
     }
-     public TipoUsuario getTipoUsuario() {
+
+    public TipoUsuario getTipoUsuario() {
         return tipoUsuario;
     }
 
     public void setTipoUsuario(TipoUsuario tipoUsuario) {
         this.tipoUsuario = tipoUsuario;
     }
-
-
-
-
 
     @Override
     public int hashCode() {
@@ -144,23 +133,19 @@ public class Usuario implements Serializable {
         }
         return true;
     }
-    
 
     @Override
     public String toString() {
-        return "Usuario{" + "idUsuario=" + idUsuario + ", usuario=" + usuario + ", clave=" + clave +", estado=" + estado + ", persona=" + persona + '}';
+        return "Usuario{" + "idUsuario=" + idUsuario + ", usuario=" + usuario + ", clave=" + clave + ", estado=" + estado + ", persona=" + persona + '}';
     }
 
-    
     @PrePersist
     public void usuarioPostPersist() {
         System.out.println("hohoiqwheoihqeoihqweoihewqoihewqouqwhiuchiuegiyd    USUARIO guyegudygueygduygeuygduyeguydgeuygduyeguyqguygwuygqdwuygduyqgeduyeguyeguyed");
         System.out.println("hohoiqwheoihqeoihqweoihewqoihewqouqwhiuchiuegiydguyegudygueygduygeuygduyeguydgeuygduyeguyqguygwuygqdwuygduyqgeduyeguyeguyed");
         System.out.println("hohoiqwheoihqeoihqweoihewqoihewqouqwhiuchiuegiydguyegudygueygduygeuygduyeguydgeuygduyeguyqguygwuygqdwuygduyqgeduyeguyeguyed");
         //if( this.persona != null )System.out.println(this.persona.toString());
-        
-		
+
     }
-    
 
 }

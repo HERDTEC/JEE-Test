@@ -22,14 +22,13 @@ import javax.faces.context.FacesContext;
 import javax.faces.view.ViewScoped;
 import javax.inject.Named;
 
-
 /**
  *
  * @author pc
  */
 @Named("MBUsuario")
 @ViewScoped
-public class ManageBeanUsuario implements Serializable{
+public class ManageBeanUsuario implements Serializable {
 
     @EJB
     UsuarioFacadeLocal usuarioEJB;
@@ -42,53 +41,59 @@ public class ManageBeanUsuario implements Serializable{
     private TipoUsuario tipoUsuario;
     private Persona persona;
     private Usuario usuario;
-   
+
     @PostConstruct
-    public void init(){
+    public void init() {
         persona = new Persona();
         usuario = new Usuario();
         cargarTipoUsuario();
     }
-    public void cargarTipoUsuario(){
-        try{
+
+    public void cargarTipoUsuario() {
+        try {
             tipoUsuarios = tipoUsuarioEJB.findAll();
-        }catch(Exception ex){
+        } catch (Exception ex) {
             //msg jsf
             System.out.println(ex.getMessage());
         }
     }
-    public void registrar(){
-        try{
-            tipoUsuario= tipoUsuarioEJB.find(idTipoUsuario);
-            usuario.setTipoUsuario(tipoUsuario);
-            usuario.setPersona(persona);
-            usuarioEJB.create(usuario);
 
-            
-            
-//            
-//            tipoUsuario= tipoUsuarioEJB.find(idTipoUsuario);
-//            usuario.setTipoUsuario(tipoUsuario);
-//            persona.setUsuario(usuario);
-//            personaEJB.create(persona);
+    public void registrar() {
+        try {
+
+            char c = 'x';
+
+            if (c == 'p') {
+
+                tipoUsuario = tipoUsuarioEJB.find(idTipoUsuario);
+                usuario.setTipoUsuario(tipoUsuario);
+                usuario.setPersona(persona);
+                usuarioEJB.create(usuario);
+            } else {
+
+                tipoUsuario = tipoUsuarioEJB.find(idTipoUsuario);
+                usuario.setTipoUsuario(tipoUsuario);
+                persona.setUsuario(usuario);
+                usuario.setPersona(persona);
+                personaEJB.create(persona);
+            }
             persona = new Persona();
             usuario = new Usuario();
 
             FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Aviso", "El registroso fue exitoso"));
-        }
-//        catch( org.hibernate.exception.ConstraintViolationException ex)
-//        {
-//            persona = new Persona();
-//            usuario = new Usuario();
-//            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_FATAL, "Aviso", "Uno o mas campos ya estan almacenados en la bd "));
-//            System.out.println(ex.getMessage());
-//        }
-        catch(Exception ex) {
-            
-            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_FATAL, "Aviso", "Error! "+ex.getMessage()));
+        } //        catch( org.hibernate.exception.ConstraintViolationException ex)
+        //        {
+        //            persona = new Persona();
+        //            usuario = new Usuario();
+        //            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_FATAL, "Aviso", "Uno o mas campos ya estan almacenados en la bd "));
+        //            System.out.println(ex.getMessage());
+        //        }
+        catch (Exception ex) {
+
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_FATAL, "Aviso", "Error! " + ex.getMessage()));
             System.out.println(ex.getMessage());
         }
-        
+
     }
 
     public Persona getPersona() {
@@ -122,6 +127,5 @@ public class ManageBeanUsuario implements Serializable{
     public void setIdTipoUsuario(Long idTipoUsuario) {
         this.idTipoUsuario = idTipoUsuario;
     }
-    
-    
+
 }
