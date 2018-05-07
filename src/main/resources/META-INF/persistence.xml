@@ -1,31 +1,31 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <persistence version="2.1" xmlns="http://xmlns.jcp.org/xml/ns/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence http://xmlns.jcp.org/xml/ns/persistence/persistence_2_1.xsd">
-  <persistence-unit name="notasPU" transaction-type="JTA">
-    <provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
-    <jta-data-source>java:app/SEDUG</jta-data-source>
-    <class>com.linkear.model.Categoria</class>
-    <class>com.linkear.model.Nota</class>
-    <class>com.linkear.model.Persona</class>
-    <class>com.linkear.model.Telefono</class>
-    <class>com.linkear.model.Usuario</class>
-    <class>com.linkear.model.Menu</class>
-    <class>com.linkear.model.TipoUsuario</class>
-    <exclude-unlisted-classes>true</exclude-unlisted-classes>
-    <properties>
-      <property name="javax.persistence.schema-generation.database.action" value="create"/>
-      <!--      <property name="packagesToScan" value="com.linkear.model"/>-->
-      <property name="hibernate.show_sql" value="true"/>
-      <property name="hibernate.format_sql" value="true"/>
-      <property name="hibernate.dialect" value="org.hibernate.dialect.Oracle10gDialect"/>
-      <property name="hibernate.transaction.jta.platform" value="org.hibernate.service.jta.platform.internal.SunOneJtaPlatform"/>
-      <property name="hibernate.show_sql_format" value="true"/>
+    <persistence-unit name="notasPU" transaction-type="JTA">
+        <provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
+        <jta-data-source>java:app/SEDUG</jta-data-source>
+        <class>com.linkear.model.Categoria</class>
+        <class>com.linkear.model.Nota</class>
+        <class>com.linkear.model.Persona</class>
+        <class>com.linkear.model.Telefono</class>
+        <class>com.linkear.model.Usuario</class>
+        <class>com.linkear.model.Menu</class>
+        <class>com.linkear.model.TipoUsuario</class>
+        <exclude-unlisted-classes>true</exclude-unlisted-classes>
+        <properties>
+            <property name="javax.persistence.schema-generation.database.action" value="create"/>
+            <!--      <property name="packagesToScan" value="com.linkear.model"/>-->
+            <property name="hibernate.show_sql" value="true"/>
+            <property name="hibernate.format_sql" value="true"/>
+            <property name="hibernate.dialect" value="org.hibernate.dialect.Oracle10gDialect"/>
+            <property name="hibernate.transaction.jta.platform" value="org.hibernate.service.jta.platform.internal.SunOneJtaPlatform"/>
+            <property name="hibernate.show_sql_format" value="true"/>
       
-<!--     <property name="hibernate.connection.autocommit" value="true"/>-->
-<!--    <property name="hibernate.cache.use_query_cache" value="true"/>-->
-  <!--    <property name="hibernate.cache.use_second_level_cache" value="false"/>-->
-<!--     <property name="hibernate.id.new_generator_mappings" value="true"/>-->
+            <!--     <property name="hibernate.connection.autocommit" value="true"/>-->
+            <!--    <property name="hibernate.cache.use_query_cache" value="true"/>-->
+            <!--    <property name="hibernate.cache.use_second_level_cache" value="false"/>-->
+            <!--     <property name="hibernate.id.new_generator_mappings" value="true"/>-->
       
 
-    </properties>
-  </persistence-unit>
+        </properties>
+    </persistence-unit>
 </persistence>

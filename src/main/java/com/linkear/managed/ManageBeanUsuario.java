@@ -20,6 +20,7 @@ import javax.ejb.EJB;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 import javax.faces.view.ViewScoped;
+import javax.inject.Inject;
 import javax.inject.Named;
 
 /**
@@ -36,16 +37,22 @@ public class ManageBeanUsuario implements Serializable {
     PersonaFacadeLocal personaEJB;
     @EJB
     TipoUsuarioFacadeLocal tipoUsuarioEJB;
+    
+    
     private List<TipoUsuario> tipoUsuarios;
     private Long idTipoUsuario;
+    @Inject
     private TipoUsuario tipoUsuario;
+    @Inject
     private Persona persona;
+    @Inject
     private Usuario usuario;
+    private char pers = 'P';
 
     @PostConstruct
     public void init() {
-        persona = new Persona();
-        usuario = new Usuario();
+//        persona = new Persona();
+//        usuario = new Usuario();
         cargarTipoUsuario();
     }
 
@@ -61,9 +68,7 @@ public class ManageBeanUsuario implements Serializable {
     public void registrar() {
         try {
 
-            char c = 'x';
-
-            if (c == 'p') {
+            if (pers == 'p') {
 
                 tipoUsuario = tipoUsuarioEJB.find(idTipoUsuario);
                 usuario.setTipoUsuario(tipoUsuario);
@@ -89,7 +94,9 @@ public class ManageBeanUsuario implements Serializable {
         //            System.out.println(ex.getMessage());
         //        }
         catch (Exception ex) {
-
+            usuario.setIdUsuario(null);
+            persona.setIdPersona(null);
+            
             FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_FATAL, "Aviso", "Error! " + ex.getMessage()));
             System.out.println(ex.getMessage());
         }
@@ -127,5 +134,14 @@ public class ManageBeanUsuario implements Serializable {
     public void setIdTipoUsuario(Long idTipoUsuario) {
         this.idTipoUsuario = idTipoUsuario;
     }
+
+    public char getPers() {
+        return pers;
+    }
+
+    public void setPers(char pers) {
+        this.pers = pers;
+    }
+    
 
 }

@@ -11,9 +11,18 @@
     <h:body>
         Hello from Facelets
         <h:form>
-            <p:growl id="mensaje" autoUpdate="false" severity="info, fatal" showSummary="true" showDetail="true"/>
+            <!--            <p:growl id="mensaje" autoUpdate="false" severity="info, fatal" showSummary="true" showDetail="true"/>-->
+            <p:growl id="mensaje" severity="info, fatal" showSummary="true" showDetail="true"><p:autoUpdate ></p:autoUpdate></p:growl>
+            
             <p:fieldset legend="Datos Personales" id="pg_persona">
                 <h:panelGrid columns="3">
+                    <p:outputLabel value = "Persistencia"  for="txt_sexo"/>
+                    <p:selectOneRadio value = "#{MBUsuario.pers}" required="true"  id="txt_pers" requiredMessage="Campo requerido">
+                        <f:selectItem itemValue="P" itemLabel="R OWNER"/>
+                        <f:selectItem itemValue="H" itemLabel="R NO-OWNER"/>
+                    </p:selectOneRadio>   
+                    <p:message for="txt_pers"/>
+
                     <p:outputLabel value = "Cedula:" for="txt_cedula"/>
                     <p:inputText id="txt_cedula" value="#{MBUsuario.persona.cedula}" required="true" requiredMessage="Campo requerido"/>
                     <p:message for="txt_cedula"/>
@@ -37,7 +46,7 @@
                 <h:panelGrid columns="3">
                     <p:outputLabel value="Usuario" for="txt_usuairo"/>
                     <p:inputText id="txt_usuairo" value = "#{MBUsuario.usuario.usuario}" required="true" requiredMessage="Campo requerido"/>
-                     <p:message for="txt_usuairo"/>
+                    <p:message for="txt_usuairo"/>
                     <p:outputLabel value="Clave" for="clave1"/>
                     <p:password id = "clave1" value = "#{MBUsuario.usuario.clave}" required="true" requiredMessage="Campo requerido"
                                 match = "clave2" feedback = "true" 
@@ -45,21 +54,21 @@
                                 weakLabel = "Debil"
                                 strongLabel = "Fuerte"
                                 goodLabel = "Bueno"
-                                
+
                                 validatorMessage = "Las claves no coinciden"
                                 />
                     <p:message for="clave1"/>
                     <p:outputLabel value="Repetir Clave" for="clave2"/>
                     <p:password id = "clave2" required="true" requiredMessage="Campo requerido"/>
                     <p:message for="clave2"/>
-                    
+
                     <p:outputLabel value="Tipo" for="txt_tipo"/>  
                     <p:selectOneMenu value = "#{MBUsuario.idTipoUsuario}" required="true" id="txt_tipo" requiredMessage="Campo requerido">
                         <f:selectItem itemLabel="Select One" itemValue="" />
                         <f:selectItems value="#{MBUsuario.tipoUsuarios}" var="tipou" itemValue="#{tipou.idTipoUsuario}" itemLabel="#{tipou.detalle}" />
                     </p:selectOneMenu>
 
-                     <p:message for="txt_tipo"/>
+                    <p:message for="txt_tipo"/>
                 </h:panelGrid>
                 <p:commandButton value="Registrar" icon="ui-icon-check" update="pg_persona, pg_usuario, mensaje" action = "#{MBUsuario.registrar()}"/>
 

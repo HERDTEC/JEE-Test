@@ -141,10 +141,6 @@ public class Usuario implements Serializable {
 
     @PrePersist
     public void usuarioPostPersist() {
-        System.out.println("hohoiqwheoihqeoihqweoihewqoihewqouqwhiuchiuegiyd    USUARIO guyegudygueygduygeuygduyeguydgeuygduyeguyqguygwuygqdwuygduyqgeduyeguyeguyed");
-        System.out.println("hohoiqwheoihqeoihqweoihewqoihewqouqwhiuchiuegiydguyegudygueygduygeuygduyeguydgeuygduyeguyqguygwuygqdwuygduyqgeduyeguyeguyed");
-        System.out.println("hohoiqwheoihqeoihqweoihewqoihewqouqwhiuchiuegiydguyegudygueygduygeuygduyeguydgeuygduyeguyqguygwuygqdwuygduyqgeduyeguyeguyed");
-        //if( this.persona != null )System.out.println(this.persona.toString());
 
     }
 

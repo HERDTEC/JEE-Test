@@ -8,6 +8,7 @@
     </h:head>
     <h:body>
         Hello from Facelets
+        <!--INCIO DEL FORM-->
         <h:form>
             <p:messages autoUpdate="true"  showDetail="true"/>
             <h:panelGrid columns="2">
@@ -24,8 +25,27 @@
             <p:separator />
             <p:link value="Crear Usuario" outcome="usuario"/> | 
             <p:link value="Crear Categoria" outcome="categoria"/>
+             <!--BOTO DE OPCION GUARDAR-->
+            <p:panelGrid  columns="2" id="pgAcciones" columnClasses="ui-grid-col-2,ui-grid-col-2" layout="grid" styleClass="ui-panelgrid-blank" >
+                <p:commandButton value="Guardar"  actionListener="#{MBIndex.guardarNuevaRecepcion1()}" />
+            </p:panelGrid>
         </h:form>
+        <!--FINAL DEL FORM-->
+        <!--INICIO DEL DIALOG DE CONFIRMACION-->
+        <p:dialog  showEffect="fade" hideEffect="fade"  id="myDialogID" widgetVar="myDialogVar">
+            <h:form>
+                <div align="center">
+
+                    <p:commandButton value="Yes xx"  icon="ui-icon-check" action="#{MBIndex.guardarNuevaRecepcion2()}" />
+                    <p:commandButton value="No" type="button" styleClass="ui-confirmdialog-no" icon="ui-icon-close" />
+
+                </div>
+            </h:form>
+        </p:dialog >
+        <!--FINAL DEL DIALOG DE CONFIRMACION-->
 
     </h:body>
 </html>
+
+
 

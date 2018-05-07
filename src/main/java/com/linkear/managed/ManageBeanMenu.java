@@ -21,11 +21,6 @@ import org.primefaces.model.menu.DefaultMenuModel;
 import org.primefaces.model.menu.DefaultSubMenu;
 import org.primefaces.model.menu.MenuModel;
 
-/**
- *
- * @author pc
- */
-
 /*
 * @Named y @SessionScoped no funciona con import javax.faces.bean.SessionScoped; si no con javax.enterprise.context.SessionScoped;
 
@@ -65,6 +60,7 @@ public class ManageBeanMenu implements Serializable {
                     for (Menu sm : menus) {
                         if (sm.getSubMenu() != null && sm.getSubMenu().getIdMenu() == m.getIdMenu()) {
                             DefaultMenuItem item = new DefaultMenuItem(sm.getNombre());
+                            item.setUrl(sm.getUrl());
                             firstSubMenu.addElement(item);
                         }
                     }
@@ -72,12 +68,16 @@ public class ManageBeanMenu implements Serializable {
                 } else {
                     if (m.getSubMenu() == null) {
                         DefaultMenuItem item = new DefaultMenuItem(m.getNombre());
+                        item.setUrl(m.getUrl());
                         menuModel.addElement(item);
                     }
                 }
             }
         }
 
+    }
+    public void cerrarSesion(){
+        FacesContext.getCurrentInstance().getExternalContext().invalidateSession();
     }
 
     public List<Menu> getMenus() {

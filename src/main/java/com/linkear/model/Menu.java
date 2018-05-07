@@ -35,6 +35,8 @@ public class Menu implements Serializable {
     private String nombre;
     @Column(name = "TIPO")
     private String tipo;
+    @Column(name = "URL")
+    private String url;
     
     @ManyToOne
     @JoinColumn(name = "ID_TIPO_USUARIO")
@@ -105,6 +107,14 @@ public class Menu implements Serializable {
 
     public void setEstado(char estado) {
         this.estado = estado;
+    }
+
+    public String getUrl() {
+        return url;
+    }
+
+    public void setUrl(String url) {
+        this.url = url;
     }
 
     @Override

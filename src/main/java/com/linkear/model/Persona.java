@@ -128,24 +128,11 @@ public class Persona implements Serializable{
     }
     
      @PrePersist
-    public void personaPrePersist() {
-         System.out.println("hohoiqwheoihqeoihqweoihewqoihewqouqwhiuchiue   PERSONA xxxgiydguyegudygueygduygeuygduyeguydgeuygduyeguyqguygwuygqdwuygduyqgeduyeguyeguyed");
-        System.out.println("hohoiqwheoihqeoihqweoihewqoihewqouqwhiuchiuegiydguyegudygueygduygeuygduyeguydgeuygduyeguyqguygwuygqdwuygduyqgeduyeguyeguyed");
-        System.out.println("hohoiqwheoihqeoihqweoihewqoihewqouqwhiuchiuegiydguyegudygueygduygeuygduyeguydgeuygduyeguyqguygwuygqdwuygduyqgeduyeguyeguyed");
-        //System.out.println(this.nombres);
-		
+    public void personaPrePersist() {		
     }
     
     @PostPersist
-    public void personaPostPersist() {
-         System.out.println("hohoiqwheoihqeoihqweoihewqoihewqouqwhiuchiue  xx --ID PERSONA xxxgiydguyegudygueygduygeuygduyeguydgeuygduyeguyqguygwuygqdwuygduyqgeduyeguyeguyed");
-        System.out.println("hohoiqwheoihqeoihqweoihewqoihewqouqwhiuchiuegiydguyegudygueygduygeuygduyeguydgeuygduyeguyqguygwuygqdwuygduyqgeduyeguyeguyed");
-        System.out.println("hohoiqwheoihqeoihqweoihewqoihewqouqwhiuchiuegiydguyegudygueygduygeuygduyeguydgeuygduyeguyqguygwuygqdwuygduyqgeduyeguyeguyed");
-        System.out.println(this.idPersona);
-        if (this.idPersona!= null)
-            this.usuario.setPersona(this);
-        
-		
+    public void personaPostPersist() {		
     }
 
     @Override
